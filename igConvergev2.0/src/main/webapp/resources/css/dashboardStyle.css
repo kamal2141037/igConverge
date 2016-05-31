@@ -1,0 +1,26 @@
+.sec-col{
+	border-radius: 10px 0px 0px 10px; /* top left, top right, bottom right, bottom left */
+	
+	height: 300px;
+
+}
+.third-col{
+	border-radius: 0px 10px 10px 0px; /* top left, top right, bottom right, bottom left */
+	
+	height: 300px;
+}
+html{
+	font-family: "Times New Roman", Georgia, Serif;
+}
+.event-heading{
+	color:white;
+}
+.event-list{
+	color:white;
+	font-size:12px;
+}
+.event-row-one{
+	color:white;
+	font-size:14px;
+}
+

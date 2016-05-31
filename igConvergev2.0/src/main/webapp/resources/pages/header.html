@@ -1,0 +1,44 @@
+
+<header>
+	<div class="row app_header">
+
+		<div class="header_image"></div>
+
+		<nav class="navbar navbar-default">
+			<div class="container-fluid navigation-bar">
+				<div class="navbar-header">
+					<div class="navigation "></div>
+				</div>
+				<div ng-show={{user}}>
+					<ul class="nav navbar-nav navbar-right">
+
+						<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+								Login</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">Home</a></li>
+						<li><a href="#viewevent">View Events</a></li>
+						<li><a href="#viewholiday">View Holidays </a></li>
+
+					</ul>
+
+				</div>
+				<div ng-hide={{user}}>
+					<ul class="nav navbar-nav navbar-right">
+
+						<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+								Logout</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">Home</a></li>
+						<li><a href="#manageevent">Manage Events</a></li>
+						<li><a href="#manageholiday">Manage Holidays </a></li>
+						<li><a href="#managemenu">Manage Menu </a></li>
+
+					</ul>
+
+				</div>
+			</div>
+		</nav>
+	</div>
+</header>

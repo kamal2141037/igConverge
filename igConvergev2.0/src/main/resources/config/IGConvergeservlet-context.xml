@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.2.xsd
+        http://www.springframework.org/schema/data/mongo
+        http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
+
+	<!-- Unco mment and add your base-package here: <context:component-scan 
+		base-package="org.springframework.samples.service"/> -->
+	<context:component-scan
+		base-package="com.infogain.igconverge.service, com.infogain.igconverge.controller, com.infogain.igconverge.util" />
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/views/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+		<constructor-arg>
+			<bean id="requestFactory"
+				class="org.springframework.http.client.SimpleClientHttpRequestFactory">
+				<property name="connectTimeout" value="${app.rest.connection.timeout}" />
+				<property name="readTimeout" value="${app.rest.read.timeout}" />
+			</bean>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+		<!-- set any properties -->
+	</bean>
+
+	<!-- Mongo Confiuration -->
+	<mongo:db-factory dbname="${mongodb.dbname}"
+		mongo-ref="mongo" username="${mongodb.username}" password="${mongodb.password}" />
+
+	<mongo:mongo id="mongo" replica-set="${mongodb.host1}:${mongodb.port1}">
+		<mongo:options connect-timeout="${monogdb.connect.timeout}"
+			connections-per-host="${mongodb.connection.perhost}" />
+	</mongo:mongo>
+
+	<bean id="mappingContext"
+		class="org.springframework.data.mongodb.core.mapping.MongoMappingContext" />
+
+	<bean id="defaultMongoTypeMapper"
+		class="org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper">
+		<constructor-arg name="typeKey">
+			<null />
+		</constructor-arg>
+	</bean>
+
+	<bean id="mappingMongoConverter"
+		class="org.springframework.data.mongodb.core.convert.MappingMongoConverter">
+		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+		<constructor-arg name="mappingContext" ref="mappingContext" />
+		<property name="typeMapper" ref="defaultMongoTypeMapper" />
+	</bean>
+
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongoDbFactory" />
+		<constructor-arg name="mongoConverter" ref="mappingMongoConverter" />
+	</bean>
+
+
+
+	<mongo:repositories base-package="com.infogain.igconverge.repository"
+		mongo-template-ref="mongoTemplate" query-lookup-strategy="create-if-not-found"
+		repository-impl-postfix="CustomImpl" />
+
+	<bean id="appProps"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>classpath:config/application.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	
+	<context:property-placeholder
+		ignore-unresolvable="true" properties-ref="appProps" />
+
+	<bean id="log4jInitialization"
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="org.springframework.util.Log4jConfigurer" />
+		<property name="targetMethod" value="initLogging" />
+		<property name="arguments">
+			<list>
+				<value>classpath:config/log4j.properties</value>
+			</list>
+		</property>
+
+	</bean>
+	
+	<bean id="certificateResource" class="org.springframework.core.io.ClassPathResource">
+    <qualifier value="cert" />
+    <constructor-arg index="0"
+        value="Certificates.p12"/>
+</bean>
+
+	<bean id="dataSource"
+      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName" value="${db.driverClassName}"/>
+      <property name="url" value="${db.url}"/>
+      <property name="username" value="${db.username}"/>
+      <property name="password" value="${db.password}"/>
+   </bean>
+
+	<bean id="aspireTest" class="com.infogain.igconverge.util.AspireTest">
+	    <property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<mvc:annotation-driven></mvc:annotation-driven>
+	
+</beans>
+

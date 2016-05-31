@@ -1,0 +1,97 @@
+.first_col{
+	
+	padding:0px;
+			
+	background-color:white;
+}
+
+html{
+	font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+}
+.meal-tabs{
+	border-bottom:1px  solid #B8B8B8;
+	border-top: 1px  solid #B8B8B8;
+	margin-left:0px;
+	padding-left:0px;
+	padding:0px;
+	height:37px;
+}
+.first-tab,.sec-tab,.third-tab,.four-tab{
+	width:25%;
+	cursor:pointer;
+	padding:5px;
+}
+.sec-tab,.third-tab,.four-tab{
+	margin-left:-5px;
+	
+	
+}
+.first-tab,.sec-tab,.third-tab{
+	border-right: 1px  solid #B8B8B8;
+}
+.four-tab{
+	width:25.3%;
+}
+.red{
+	background-color:white;
+}
+.blue{
+	background-color:#B8B8B8;
+}
+.meal-tab-first-image{
+	background: url('../images/image_sprites.png') no-repeat 17.708% 28.09%;
+}
+.meal-tab-sec-image{
+	background: url('../images/image_sprites.png') no-repeat 29.563% 27.971%;
+}
+.meal-tab-third-image {
+	background: url('../images/image_sprites.png') no-repeat 40.856% 28.061%;	
+}
+.meal-tab-four-image {
+	background: url('../images/image_sprites.png') no-repeat 52.196% 27.926%;
+	
+}
+.meal-tab-first-image,.meal-tab-sec-image,.meal-tab-third-image,.meal-tab-four-image{
+	width: 32px;
+	height: 26px;
+	margin:auto;
+}    
+.meal-rating{
+	margin:auto;
+	padding:2px;
+	width:50%;
+}
+.menu-heading{
+	color:#FFA500;
+}
+.meal-heading{
+	color:#808080;
+}
+.item-list-style{
+
+}
+.feedback-button{
+	width:70%;
+	margin:auto;
+	height:30px;
+	padding:5px;
+	font-size:16px;
+}     
+.meal-image{
+	background: url('../images/image_sprites.png') no-repeat 0 -828px;
+	width: 250px;
+	height: 150px;
+	margin:auto;
+}
+.meal-data{
+	padding-top:5px;
+	box-shadow: 0px 0px 4px #ccc;
+	
+}
+.back{
+	background-color:rgba(127, 213, 127, 0.82);
+	
+}
+.footer_text{
+	margin-left:10%;
+}

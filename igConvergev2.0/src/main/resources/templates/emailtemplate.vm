@@ -1,0 +1,50 @@
+
+<html>
+<head>
+	<title>Mailer</title>
+	<style>
+	.mailer-wrapper{
+		max-width: 1000px;
+		margin: 0 auto;
+
+	}
+	</style>
+</head>
+<body style="background-color:#f2f2f2; padding:20px;">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="mailer-wrapper">
+	<tr>
+		<td style="padding-left:10%; padding-right:10%; padding-top:10px; padding-bottom: 10px;"><img src="cid:identifier1234"></td>
+	</tr>
+	<tr>
+		<td style="background-color:#fff">&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="padding-left:10%; padding-right:10%; padding-top:5px; padding-bottom:5px; background-color:#d66739;" valign="middle">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="cid:identifier1236"></td>
+					<td style="font-family: arial; font-size:20px; padding-left:20px; color:#fff; font-weight:normal;">
+					
+					${Mail.mailSubject}
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding-top:50px; padding-bottom:50px; padding-left:18%; padding-right:10%; background-color:#fff; font-family: arial; font-size:14px; line-height:24px; color:#5c5757; font-weight: normal;" valign="middle">
+		
+		${Mail.mailContent}<br><br>
+		<span style="color:#d66739">-The igConverge Team</span>
+	</td>
+	</tr>
+	<tr>
+		<td style="padding-left:18%; padding-right:10%; padding-top:10px; padding-bottom: 10px; background-color:#fedc45; font-family: arial; font-size:14px; line-height:24px; color:#5c5757; font-weight: normal;"><img src="cid:identifier1235"> <br>
+		Copyrights 2015. All Rights Reserved by Infogain.</td>
+	</tr>
+	<tr>
+		<td style="background-color:#fff">&nbsp;</td>
+	</tr>
+</table>
+</body>
+</html>
